@@ -27,7 +27,7 @@ local function highlight_marks(mark_list, top_line, bottom_line)
 		if line < bottom_line and col < column_count then
 			local extmark_id = vim.api.nvim_buf_set_extmark(0, ns, line, col, {
 				virt_text = { { mark.mark:sub(2), opts.highlight_group } },
-				virt_text_pos = "overlay",
+				virt_text_pos = opts.text_position,
 				priority = 200,
 			})
 		end
