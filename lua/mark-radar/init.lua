@@ -8,16 +8,22 @@ local function setup(user_opts)
     vim.api.nvim_command("highlight default RadarMark guifg=#ff007c gui=bold ctermfg=198 cterm=bold")
     vim.api.nvim_command("highlight default RadarBackground guifg=#666666 ctermfg=242")
 	local modes = { "n", "v" }
+
+    -- check if user wants to use default mappings and assign scan mapping
 	if opts.set_default_mappings then
-		for _, mode in ipairs(modes) do
-			vim.api.nvim_set_keymap(
-				mode,
-				"`",
-				"<cmd>lua require('mark-radar').scan()<cr>",
-				{ silent = true, noremap = true }
-			)
-		end
+        activate_scan_key = "`"
+    else
+        activate_scan_key = opts.check_marks
 	end
+
+ 	for _, mode in ipairs(modes) do
+        vim.api.nvim_set_keymap(
+	   	mode,
+	   	activate_scan_key,
+	   	"<cmd>lua require('mark-radar').scan()<cr>",
+	   	{ silent = true, noremap = true }
+	   )
+	end 
 end
 
 local function highlight_marks(mark_list, top_line, bottom_line)
