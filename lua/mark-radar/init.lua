@@ -10,7 +10,7 @@ local function setup(user_opts)
 	local modes = { "n", "v" }
 
     -- check if user wants to use default mappings and assign scan mapping
-	if opts.set_default_mappings then
+    if opts.set_default_mappings then
         activate_scan_key = "`"
     else
         activate_scan_key = opts.check_marks
