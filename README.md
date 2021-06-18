@@ -18,11 +18,12 @@ paq{'winston0410/mark-radar.nvim'}
 use
 {
     'winston0410/mark-radar.nvim',
-    -- cmd = require("mark-radar").setup()
-} 
+    require("mark-radar").setup{
+        -- your options here, such as:
+        -- highlight_group = "<group_name>"
+   }
+}  
 ``` 
-
-and uncomment the command to load the plugin after running `:PackerInstall`
 
 ### `vim-plug`
 
