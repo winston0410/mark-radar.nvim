@@ -12,6 +12,19 @@ Scan and highlight all marks in your buffer.
 paq{'winston0410/mark-radar.nvim'}
 ```
 
+### `packer.nvim`
+
+```shell
+use
+{
+    'winston0410/mark-radar.nvim',
+    require("mark-radar").setup{
+        -- your options here, such as:
+        -- highlight_group = "<group_name>"
+   }
+}  
+``` 
+
 ### `vim-plug`
 
 ```shell
@@ -21,7 +34,7 @@ Plug 'winston0410/mark-radar.nvim'
 After you have installed, call `setup` to start using this plugin.
 
 ```shell
-    require("mark-radar").setup()
+require("mark-radar").setup()
 ```
 
 ## Configuration
@@ -31,17 +44,21 @@ This is the default configuration.
 ```shell
 local opts = {
     set_default_mappings = true,
-	highlight_group = "RadarMark",
-	background_highlight = true,
-    background_highlight_group = "RadarBackground",
+    highlight_group = "RadarMark",
+    background_highlight = true,                    
+    background_highlight_group = "RadarBackground", 
 }
 ```
 
 You can pass a table in `setup()` to override the default configuration.
 
 ```shell
-    require("mark-radar").setup()
+    require("mark-radar").setup(opts)
 ```
+
+## Usage
+
+The default mapping to activate mark-radar is the `` backtick/grave key (`) ``
 
 ## Inspiration
 
