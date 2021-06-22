@@ -7,7 +7,7 @@ local function setup(user_opts)
 	opts = vim.tbl_extend("force", opts, user_opts or {})
 	vim.api.nvim_command("highlight default RadarMark guifg=#ff007c gui=bold ctermfg=198 cterm=bold")
 	vim.api.nvim_command("highlight default RadarBackground guifg=#666666 ctermfg=242")
-	local modes = { "n", "v" }
+	local modes = { "n", "v", "o" }
 	if opts.set_default_mappings then
 		for _, mode in ipairs(modes) do
 			vim.api.nvim_set_keymap(
