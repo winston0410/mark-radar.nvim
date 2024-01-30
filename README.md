@@ -47,6 +47,7 @@ local opts = {
     highlight_group = "RadarMark",
     background_highlight = true,                    
     background_highlight_group = "RadarBackground", 
+    show_marks_at_jump_positions = true,
 }
 ```
 
