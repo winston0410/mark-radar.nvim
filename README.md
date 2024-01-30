@@ -47,6 +47,7 @@ local opts = {
     highlight_group = "RadarMark",
     background_highlight = true,                    
     background_highlight_group = "RadarBackground", 
+    text_position = "overlay",
 }
 ```
 
@@ -56,9 +57,11 @@ You can pass a table in `setup()` to override the default configuration.
     require("mark-radar").setup(opts)
 ```
 
+Possible values for text_position are `"eol"`, `"overlay"`, `"right_align"`, and `"inline"`. See the `virt_text_pos` description in `:h nvim_buf_set_extmark` for more information.
+
 ## Usage
 
-The default mapping to activate mark-radar is the `` backtick/grave key (`) ``
+The default mappings to activate mark-radar are the `` backtick/grave key (`) `` and the `apostrophe key (')`
 
 ## Inspiration
 
