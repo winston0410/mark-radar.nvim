@@ -51,7 +51,7 @@ local function scan(jump_to_column)
 	local top_line, bottom_line = win_info.topline, win_info.botline
 	local bottom_line_column_count = string.len(vim.api.nvim_buf_get_lines(0, bottom_line - 1, bottom_line, false)[1])
 
-	local mark_list = vim.fn.getmarklist(1)
+    local mark_list = vim.fn.getmarklist(vim.fn.bufnr('%'))
 
 	local input = nil
 
