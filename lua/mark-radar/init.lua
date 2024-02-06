@@ -26,9 +26,12 @@ local function setup(user_opts)
 	end
 end
 
-local function highlight_marks(mark_list, top_line, bottom_line)
+local function highlight_marks(mark_list, top_line, bottom_line, jump_to_column)
 	for _, mark in ipairs(mark_list) do
 		local line, col = mark.pos[2] - 1, mark.pos[3] - 1
+        if(opts.show_marks_at_jump_positions and not jump_to_column) then
+            col = vim.fn.indent(vim.fn.line(mark.mark))
+        end
 		local column_count = string.len(vim.api.nvim_buf_get_lines(0, line, line + 1, false)[1])
 		if line < bottom_line and col < column_count then
 			local extmark_id = vim.api.nvim_buf_set_extmark(0, ns, line, col, {
@@ -51,7 +54,7 @@ local function scan(jump_to_column)
 	local top_line, bottom_line = win_info.topline, win_info.botline
 	local bottom_line_column_count = string.len(vim.api.nvim_buf_get_lines(0, bottom_line - 1, bottom_line, false)[1])
 
-	local mark_list = vim.fn.getmarklist(1)
+    local mark_list = vim.fn.getmarklist(vim.fn.bufnr('%'))
 
 	local input = nil
 
@@ -67,7 +70,7 @@ local function scan(jump_to_column)
 		)
 	end
 
-	highlight_marks(mark_list, top_line, bottom_line)
+	highlight_marks(mark_list, top_line, bottom_line, jump_to_column)
 
 	while not input do
 		local ok, key = pcall(vim.fn.getchar)
