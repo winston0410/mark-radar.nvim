@@ -6,15 +6,37 @@ Scan and highlight all marks in your buffer.
 
 ## Installation
 
-### `paq.nvim`
+### Plugin Managers
 
-```shell
+<details>
+<summary><code>lazy.nvim</code></summary>
+
+```lua
+{
+    'winston0410/mark-radar.nvim',
+    config = function()
+        require('mark-radar').setup({
+            -- options
+        })
+    end,
+}
+```
+
+</details>
+
+<details>
+<summary><code>paq.nvim</code></summary>
+
+```lua
 paq{'winston0410/mark-radar.nvim'}
 ```
 
-### `packer.nvim`
+</details>
 
-```shell
+<details>
+<summary><code>packer.nvim</code></summary>
+
+```lua
 use
 {
     'winston0410/mark-radar.nvim',
@@ -25,15 +47,22 @@ use
 }
 ```
 
-### `vim-plug`
+</details>
 
-```shell
+<details>
+<summary><code>vim-plug</code></summary>
+
+```vim
 Plug 'winston0410/mark-radar.nvim'
 ```
 
+</details>
+
+### More Information
+
 After you have installed, call `setup` to start using this plugin.
 
-```shell
+```lua
 require("mark-radar").setup()
 ```
 
@@ -41,7 +70,7 @@ require("mark-radar").setup()
 
 This is the default configuration.
 
-```shell
+```lua
 local opts = {
     set_default_mappings = true,
     highlight_group = "RadarMark",
@@ -54,16 +83,21 @@ local opts = {
 
 You can pass a table in `setup()` to override the default configuration.
 
-```shell
-    require("mark-radar").setup(opts)
+```lua
+require("mark-radar").setup(opts)
 ```
 
-Possible values for text_position are `"eol"`, `"overlay"`, `"right_align"`, and `"inline"`. See the `virt_text_pos` description in `:h nvim_buf_set_extmark` for more information.
+Possible values for `text_position` are `"eol"`, `"overlay"`, `"right_align"`,
+and `"inline"`. See the `virt_text_pos` description in `:h nvim_buf_set_extmark`
+for more information.
 
 ## Usage
 
-The default mappings to activate mark-radar are the `` backtick/grave key (`) `` and the `apostrophe key (')`
+The default mappings to activate mark-radar are the backtick/grave key
+(<kbd>\`</kbd>) and the apostrophe key (<kbd>'</kbd>). See `:h mark-motions` for
+details.
 
 ## Inspiration
 
-This plugin is greatly inspired by [`hop.nvim`](https://github.com/phaazon/hop.nvim)
+This plugin is greatly inspired by
+[`hop.nvim`](https://github.com/phaazon/hop.nvim)
