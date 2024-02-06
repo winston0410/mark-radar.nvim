@@ -6,6 +6,10 @@ Scan and highlight all marks in your buffer.
 
 ## Installation
 
+### Requirements
+
+-   Neovim version 0.5 or newer.
+
 ### Plugin Managers
 
 <details>
