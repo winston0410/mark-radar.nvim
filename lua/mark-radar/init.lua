@@ -38,6 +38,10 @@ local function highlight_marks(mark_list, top_line, bottom_line, jump_to_column)
         end
         local column_count =
             string.len(vim.api.nvim_buf_get_lines(0, line, line + 1, false)[1])
+        if column_count <= 0 then
+            -- if there is no text in the line, show the mark in column 1
+            column_count = 1
+        end
         if line < bottom_line and col < column_count then
             local extmark_id = vim.api.nvim_buf_set_extmark(0, ns, line, col, {
                 virt_text = { { mark.mark:sub(2), opts.highlight_group } },
