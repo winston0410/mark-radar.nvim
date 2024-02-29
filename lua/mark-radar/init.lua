@@ -32,17 +32,18 @@ end
 
 local function highlight_marks(mark_list, top_line, bottom_line, jump_to_column)
     for _, mark in ipairs(mark_list) do
+        -- get mark position information
         local line, col = mark.pos[2] - 1, mark.pos[3] - 1
+
+        -- indent column if necessary
         if opts.show_marks_at_jump_positions and not jump_to_column then
             col = vim.fn.indent(vim.fn.line(mark.mark))
         end
-        local column_count =
-            string.len(vim.api.nvim_buf_get_lines(0, line, line + 1, false)[1])
-        if column_count <= 0 then
-            -- if there is no text in the line, show the mark in column 1
-            column_count = 1
+
         end
-        if line < bottom_line and col < column_count then
+
+        -- draw marks
+        if line + 1 >= top_line and line < bottom_line then
             local extmark_id = vim.api.nvim_buf_set_extmark(0, ns, line, col, {
                 virt_text = { { mark.mark:sub(2), opts.highlight_group } },
                 virt_text_pos = opts.text_position,
