@@ -40,6 +40,15 @@ local function highlight_marks(mark_list, top_line, bottom_line, jump_to_column)
             col = vim.fn.indent(vim.fn.line(mark.mark))
         end
 
+        -- adjust positions of off-screen marks to be barely on the screen
+        if opts.show_off_screen_marks then
+            if line + 1 < top_line then
+                line = top_line - 1
+                col = 0
+            elseif line + 1 > bottom_line then
+                line = bottom_line - 1
+                col = 0
+            end
         end
 
         -- draw marks
