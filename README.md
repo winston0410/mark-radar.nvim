@@ -8,7 +8,7 @@ Scan and highlight all marks in your buffer.
 
 ### Requirements
 
--   Neovim version 0.5 or newer.
+- Neovim version 0.5 or newer.
 
 ### Plugin Managers
 
@@ -82,6 +82,7 @@ local opts = {
     background_highlight_group = "RadarBackground",
     text_position = "overlay",
     show_marks_at_jump_positions = true,
+    show_off_screen_marks = true,
 }
 ```
 
