@@ -14,18 +14,26 @@ local function setup(user_opts)
     local modes = { 'n', 'v', 'o' }
     if opts.set_default_mappings then
         for _, mode in ipairs(modes) do
-            vim.api.nvim_set_keymap(
-                mode,
-                '`',
-                "<cmd>lua require('mark-radar').scan(true)<cr>",
-                { silent = true, noremap = true }
-            )
-            vim.api.nvim_set_keymap(
-                mode,
-                "'",
-                "<cmd>lua require('mark-radar').scan(false)<cr>",
-                { silent = true, noremap = true }
-            )
+            vim.api.nvim_set_keymap(mode, '`', '', {
+                callback = function()
+                    if opts.pre_scan_hook ~= nil then
+                        opts.pre_scan_hook()
+                    end
+                    require('mark-radar').scan(true)
+                end,
+                silent = true,
+                noremap = true,
+            })
+            vim.api.nvim_set_keymap(mode, "'", '', {
+                callback = function()
+                    if opts.pre_scan_hook ~= nil then
+                        opts.pre_scan_hook()
+                    end
+                    require('mark-radar').scan(false)
+                end,
+                silent = true,
+                noremap = true,
+            })
         end
     end
 end
@@ -66,6 +74,9 @@ end
 
 local function clean_up(top_line, bottom_line)
     vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    if opts.post_clean_up_hook ~= nil then
+        opts.post_clean_up_hook()
+    end
 end
 
 local function scan(jump_to_column)
