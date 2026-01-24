@@ -4,7 +4,10 @@ local function jump(mark_list, str, to_column)
             local line, col = mark.pos[2], mark.pos[3] - 1
             local first_char_col = vim.fn.indent(vim.fn.line("'" .. str))
             local target_col = to_column and col or first_char_col
-            vim.api.nvim_win_set_cursor(0, { line, target_col })
+            local success, errMsg = pcall(function() vim.api.nvim_win_set_cursor(0, { line, target_col }) end)
+            if not success then
+              print(errMsg)
+            end
         end
     end
 end
