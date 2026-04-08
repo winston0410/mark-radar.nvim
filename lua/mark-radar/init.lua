@@ -86,7 +86,21 @@ local function scan(jump_to_column)
         vim.api.nvim_buf_get_lines(0, bottom_line - 1, bottom_line, false)[1]
     )
 
+    -- get marks in current file
     local mark_list = vim.fn.getmarklist(vim.fn.bufnr('%'))
+
+    -- get global marks
+    local global_mark_list = vim.fn.getmarklist()
+
+    -- append global marks that are in the current file to the mark list
+    for _, mark in ipairs(global_mark_list) do
+        local mark_file_name = vim.fn.fnamemodify(mark.file, ':p')
+        local current_file_name =
+            vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p')
+        if mark_file_name == current_file_name then
+            table.insert(mark_list, mark)
+        end
+    end
 
     local input = nil
 
