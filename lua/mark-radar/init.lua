@@ -14,26 +14,36 @@ local function setup(user_opts)
     local modes = { 'n', 'v', 'o' }
     if opts.set_default_mappings then
         for _, mode in ipairs(modes) do
-            vim.api.nvim_set_keymap(mode, '`', '', {
-                callback = function()
-                    if opts.pre_scan_hook ~= nil then
-                        opts.pre_scan_hook()
-                    end
-                    require('mark-radar').scan(true)
-                end,
-                silent = true,
-                noremap = true,
-            })
-            vim.api.nvim_set_keymap(mode, "'", '', {
-                callback = function()
-                    if opts.pre_scan_hook ~= nil then
-                        opts.pre_scan_hook()
-                    end
-                    require('mark-radar').scan(false)
-                end,
-                silent = true,
-                noremap = true,
-            })
+            vim.api.nvim_set_keymap(
+                mode,
+                opts.mappings.exact_position_jump_key,
+                '',
+                {
+                    callback = function()
+                        if opts.pre_scan_hook ~= nil then
+                            opts.pre_scan_hook()
+                        end
+                        require('mark-radar').scan(true)
+                    end,
+                    silent = true,
+                    noremap = true,
+                }
+            )
+            vim.api.nvim_set_keymap(
+                mode,
+                opts.mappings.start_of_line_jump_key,
+                '',
+                {
+                    callback = function()
+                        if opts.pre_scan_hook ~= nil then
+                            opts.pre_scan_hook()
+                        end
+                        require('mark-radar').scan(false)
+                    end,
+                    silent = true,
+                    noremap = true,
+                }
+            )
         end
     end
 end

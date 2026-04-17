@@ -77,6 +77,10 @@ This is the default configuration.
 ```lua
 local opts = {
     set_default_mappings = true,
+    mappings = {
+        exact_position_jump_key = '`',
+        start_of_line_jump_key = "'",
+    },
     highlight_group = "RadarMark",
     background_highlight = true,
     background_highlight_group = "RadarBackground",
