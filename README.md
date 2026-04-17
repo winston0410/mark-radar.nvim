@@ -102,6 +102,11 @@ Possible values for `text_position` are `"eol"`, `"overlay"`, `"right_align"`,
 and `"inline"`. See the `virt_text_pos` description in `:h nvim_buf_set_extmark`
 for more information.
 
+The `exact_position_jump_key` mapping will jump the cursor to the row and column
+of the mark. The `start_of_line_jump_key` will jump the cursor to the first
+non-blank character in the mark's line. See `:h mark-motions` for more
+information.
+
 ## Usage
 
 The default mappings to activate mark-radar are the backtick/grave key
