@@ -9,6 +9,4 @@ local function jump(mark_list, str, to_column)
     end
 end
 
-return {
-    jump = jump,
-}
+return { jump = jump }
